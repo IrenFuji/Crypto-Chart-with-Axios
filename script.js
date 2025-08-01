@@ -4,8 +4,14 @@
 //   • Key: baseURL
 //   • Value: "https://coinbase.com/api/v2/assets/prices"
 
+const api = axios.create({
+  baseURL: "https://coinbase.com/api/v2/assets/prices",
+});
+
 // 🧠 STEP 2: Make an array called "coins"
 // - Store the IDs of the cryptocurrencies you want to track (e.g., "bitcoin", "ethereum").
+
+const coins = ["bitcoin", "ethereum", "solana"];
 
 // 🧠 STEP 3: Write a function called "createChart"
 // - Parameters: (Chart, coinId, labels, data, symbol)
@@ -16,6 +22,36 @@
 //   4. Use new Chart(canvas, {...}) to create a line chart.
 //   5. Pass in labels (X-axis) and data (Y-axis) from the API response.
 //   6. Use symbol for the dataset label and give it a color (e.g., blue).
+
+function createChart(Chart, coinId, labels, data, symbol) {
+  const container = document.getElementById("chartSection");
+  const canvas = document.createElement("canvas");
+  canvas.id = coinId;
+  container.appendChild(canvas);
+
+  new Chart(canvas, {
+    type: "line",
+    data: {
+      labels: labels, // X-axis
+      datasets: [
+        {
+          label: symbol, // Name of the coin
+          data: data, // Prices to plot
+          borderColor: "blue", // Line color
+          fill: false,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: false,
+        },
+      },
+    },
+  });
+}
 
 // 🧠 STEP 4: Write an async function called "makeCharts"
 // - Inside this function:
