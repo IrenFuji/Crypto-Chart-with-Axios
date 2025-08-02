@@ -118,6 +118,12 @@ async function makeCharts() {
 // 🧠 STEP 5: Call makeCharts() once to display charts immediately.
 // - Use setInterval(makeCharts, 10000) to refresh every 10 seconds (10,000ms).
 
+// show charts right away
+makeCharts();
+
+// update charts every 10 seconds
+setInterval(makeCharts, 10000);
+
 // ✅ IMPORTANT:
 // - Use the given variable names exactly: api, coins, createChart, makeCharts.
 // - Use the methods: axios.create, api.get, Promise.all, .map(), .forEach(), document.getElementById, document.createElement.
