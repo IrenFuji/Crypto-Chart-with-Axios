@@ -47,6 +47,12 @@ function createChart(Chart, coinId, labels, data, symbol) {
       scales: {
         y: {
           beginAtZero: false,
+          ticks: {
+            // added currency for redability
+            callback: function (value) {
+              return "$" + Number(value).toLocaleString();
+            },
+          },
         },
       },
     },
@@ -90,7 +96,7 @@ async function makeCharts() {
           return Number(item[1]);
         });
 
-        const symbol = response.data.data.symbol;
+        const symbol = response.data.data.base;
 
         return {
           coinId: coinId,
