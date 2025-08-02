@@ -1,3 +1,17 @@
+## API Testing & Chart Rendering Verification
+
+#### Bitcoin
+![BTC Test](btc.png)
+
+#### Ethereum
+![ETH Test](eth.png)
+
+#### Solana
+![SOL Test](sol.png)
+
+#### Chart Output Preview
+![Crypto Charts](chart.png)
+
 # 📈 Crypto Chart with Axios and Chart.js
 
 This beginner-friendly project teaches you how to use **Axios** to fetch cryptocurrency prices and display them using **Chart.js**. You’ll also learn how to use `Promise.all`, the difference between `axios.create()` and `axios.get()`, and how `async/await` fits in.
