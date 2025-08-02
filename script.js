@@ -66,6 +66,55 @@ function createChart(Chart, coinId, labels, data, symbol) {
 //   4. After fetching all data, clear the loader (innerHTML = "").
 //   5. Loop over the returned data with forEach() and call createChart() for each coin.
 
+async function makeCharts() {
+  const container = document.getElementById("chartSection");
+
+  // show loader
+  container.innerHTML = "<div class='loader'></div>";
+
+  try {
+    const coinDataArray = await Promise.all(
+      coins.map(async function (coinId) {
+        const response = await api.get("/" + coinId);
+
+        // get last 24 prices
+        const prices = response.data.data.prices.hour.prices.slice(0, 24);
+
+        // get time labels
+        const labels = prices.map(function (item) {
+          return new Date(item[0] * 1000).toLocaleTimeString();
+        });
+
+        // get price values
+        const data = prices.map(function (item) {
+          return Number(item[1]);
+        });
+
+        const symbol = response.data.data.symbol;
+
+        return {
+          coinId: coinId,
+          labels: labels,
+          data: data,
+          symbol: symbol,
+        };
+      })
+    );
+
+    // clear loader
+    container.innerHTML = "";
+
+    // make charts
+    coinDataArray.forEach(function (coin) {
+      createChart(Chart, coin.coinId, coin.labels, coin.data, coin.symbol);
+    });
+  } catch (error) {
+    // show error
+    container.innerHTML = "<p>Oh No! Something went wrong.</p>";
+    console.log(error);
+  }
+}
+
 // 🧠 STEP 5: Call makeCharts() once to display charts immediately.
 // - Use setInterval(makeCharts, 10000) to refresh every 10 seconds (10,000ms).
 
