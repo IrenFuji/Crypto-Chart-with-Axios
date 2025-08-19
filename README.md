@@ -93,7 +93,7 @@ In this project, we give it real-time crypto data to draw line graphs that auto-
 
 ---
 
-## 🧠 How It Works Together
+## How It Works Together
 
 - We fetch live data using **Axios** with a reusable instance (`axios.create()`).
 - We wait for data using `async/await`, keeping the code clean and readable.
@@ -102,7 +102,7 @@ In this project, we give it real-time crypto data to draw line graphs that auto-
 
 ---
 
-## 🧪 Practice Checklist
+## Practice Checklist
 
 ✅ Learn how to connect to an API  
 ✅ Practice writing `async` functions  
